@@ -1,0 +1,36 @@
+curl https://api.sandbox.paypal.com/v1/oauth2/token \
+ -H "Accept: application/json" \
+ -H "Accept-Language: en_US" \
+ -u "ASOACG_LeWCGO6-eDxGAUu1QmsP3FCUt4MyB4Iju-PygxF6Y-VdzNqp2esi_6ZUh8MMOazh5FU47rJqJ:EFrhSZgM27V3VVBZXocGZpOXbCsD4X3B3uMj7zU7QycMtGvwT_LxbO8dXEQKtDCtXps4R6Mlkfvol6iq" \
+ -d "grant_type=client_credentials"
+
+curl https://api.sandbox.paypal.com/v1/payments/payment \
+  -v \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer A101.HTmKPvivfZknI7cl5PGPFGz2N6g1NonBZdZydLNwKTEpBLakscHfEBXHgnzG-tWW.3uZdvjRvtZMguNfSsCk-Mx2Fd5q' \
+  -d '{
+    "intent":"sale",
+    "redirect_urls":{
+      "return_url":"http://return_URL_here",
+      "cancel_url":"http://cancel_URL_here"
+    },
+    "payer":{
+      "payment_method":"paypal"
+    },
+    "transactions":[
+      {
+        "amount":{
+          "total":"250.99",
+          "currency":"BRL"
+        },
+        "description":"This is the payment transaction description."
+      }
+    ]
+  }'
+
+https://www.sandbox.paypal.com/br/cgi-bin/webscr?
+
+curl -v https://api.sandbox.paypal.com/v1/payments/payment/PAY-0M8734838Y934064EK5BV4TI/execute/ \
+-H "Content-Type:application/json" \
+-H "Authorization: Bearer A101.HTmKPvivfZknI7cl5PGPFGz2N6g1NonBZdZydLNwKTEpBLakscHfEBXHgnzG-tWW.3uZdvjRvtZMguNfSsCk-Mx2Fd5q" \
+-d '{ "payer_id" : "Y3QP6CXTS6NQ6" }'

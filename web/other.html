@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../jquery.min.js"></script>
+</head>
+<body>
+    <p>...</p>
+    <button id="b1">OPTIONS</button>
+    <button id="b2">GET</button>
+    
+    <script>
+
+        $( document ).ready(function main(){
+            $("#b2").click(function(){
+                    var suc = function(result){
+                        $("p").html(result.resp);
+                    }
+                    var obj = {url: "https://pharaoh-genesis-robson1990.c9users.io/hello", type:"GET", success:suc}
+                    $.ajax(obj);
+            }
+            );
+            
+            $("#b1").click(function(){
+                    var suc = function(result,t,request){
+                        $("p").html(request.getResponseHeader("allow"));
+                    }
+                    var obj = {url: "https://pharaoh-genesis-robson1990.c9users.io/hello", type:"OPTIONS", success:suc};
+                    $.ajax(obj);
+               }
+            );
+        }
+        //data:{val:1,l:"jd"}, dataType:"json"
+        $(main);
+        );
+        
+    </script>
+</body>
+</html>
