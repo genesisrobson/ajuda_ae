@@ -1,0 +1,15 @@
+[02-Jun-2016 21:06:14 UTC] PHP Warning:  require_once(resources.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/web/web.php on line 12
+[02-Jun-2016 21:06:14 UTC] PHP Stack trace:
+[02-Jun-2016 21:06:14 UTC] PHP   1. {main}() /home/ubuntu/workspace/web/web.php:0
+[02-Jun-2016 21:06:14 UTC] PHP   2. Controller->gerenciar() /home/ubuntu/workspace/web/web.php:23
+[02-Jun-2016 21:06:14 UTC] PHP Fatal error:  require_once(): Failed opening required 'resources.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/web/web.php on line 12
+[02-Jun-2016 21:06:14 UTC] PHP Stack trace:
+[02-Jun-2016 21:06:14 UTC] PHP   1. {main}() /home/ubuntu/workspace/web/web.php:0
+[02-Jun-2016 21:06:14 UTC] PHP   2. Controller->gerenciar() /home/ubuntu/workspace/web/web.php:23
+[02-Jun-2016 21:32:55 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home/ubuntu/workspace/projeto/model/projetoDAO.php on line 22
+[02-Jun-2016 21:32:55 UTC] PHP Stack trace:
+[02-Jun-2016 21:32:55 UTC] PHP   1. {main}() /home/ubuntu/workspace/projeto/web.php:0
+[02-Jun-2016 21:32:55 UTC] PHP   2. Controller->gerenciar() /home/ubuntu/workspace/projeto/web.php:23
+[02-Jun-2016 21:32:55 UTC] PHP   3. GeneralResourceGET->project() /home/ubuntu/workspace/projeto/web.php:17
+[02-Jun-2016 21:32:55 UTC] PHP   4. ProjetoDAO->getProjeto() /home/ubuntu/workspace/projeto/resources.php:26
+[02-Jun-2016 21:32:55 UTC] PHP   5. mysqli_stmt->bind_result() /home/ubuntu/workspace/projeto/model/projetoDAO.php:22

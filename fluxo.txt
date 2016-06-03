@@ -1,0 +1,19 @@
+--- para criar ---
+git init
+git remote add <variavel> https://...
+
+
+git status (verificar) (em vermelho)
+git add <arquivo.php> ( . para todos )
+git status (verde)
+git commit -m "mensagem..."
+git push origin master
+-----
+
+maria alterou um arquivo
+para joão modificar o codigo tbm
+
+git clone https://repositorio
+
+origin -> foi definido via git remote add
+master -> sua pasta na branch master

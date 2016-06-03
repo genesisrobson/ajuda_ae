@@ -4,7 +4,7 @@ class Projeto{
     private $nome, $propositor, $objetivo, $cidade, $estado, $vlMeta, $deadline; #$id, $nome, $valor;
     
     //public function __construct($id=0, $nome, $valor){
-    public function __construct($nome, $propositor, $objetivo, $cidade, $estado, $vlMeta, $deadline){
+    public function __construct($id=0,$nome, $propositor, $objetivo, $cidade, $estado, $vlMeta, $deadline){
         $this->nome = $nome;
         $this->propositor = $propositor;
         $this->objetivo = $objetivo;
@@ -17,9 +17,9 @@ class Projeto{
         //$this->valor = $valor;
     }
     
-    /*public function getId(){
+    public function getId(){
         return $this->id;
-    }*/
+    }
     
     public function getNome(){
         return $this->nome;
