@@ -6,7 +6,7 @@ class ProjetoDAO{
         if ($mysqli->connect_errno) {
             echo "Falha no MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
         }
-        $stmt = $mysqli->prepare("INSERT INTO tabela_vaquinha(nome,propositor,objetivo,cidade,estado,vlMeta,deadline) VALUES (?,?)");
+        $stmt = $mysqli->prepare("INSERT INTO tabela_vaquinha(nome,propositor,objetivo,cidade,estado,vlMeta,deadline) VALUES (?,?,?,?,?,?,?)");
         $stmt->bind_param("sssssfs",$p->getNome(),$p->getPropositor(),$p->getObjetivo(),$p->getCidade(),$p->getEstado(),$p->getvlMeta(),$p->getDeadline());
         if (!$stmt->execute()) {
             echo "Erro: (" . $stmt->errno . ") " . $stmt->error . "<br>";
