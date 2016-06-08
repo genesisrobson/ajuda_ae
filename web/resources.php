@@ -4,7 +4,7 @@ abstract class GeneralResource{
     
     public function __call($m,$e){
         header('content-type: application/json');
-        echo json_encode(array("response"=>"Recurso inexistente $m"));
+        echo json_encode(array("response"=>"$m eh um Recurso inexistente!"));
         http_response_code(404);   
     }
 }
@@ -38,17 +38,17 @@ class GeneralResourceGET extends GeneralResource{
     
 }class GeneralResourcePOST extends GeneralResource{
     
-    public function project1(){
+    public function project(){
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
             $json = file_get_contents('php://input');
             $array = json_decode($json,true);
             //CUIDADO
             require_once "model/projeto.php";
             require_once "model/projetoDAO.php";
-            $project = new Projeto(0,$array["nome"],$array["propositor"],$array["objetivo"],$array["cidade"],$array["estado"],$array["meta"],$array["data final"]);
+            $project = new Projeto(0,$array["nome"],$array["propositor"],$array["objetivo"],$array["cidade"],$array["estado"],$array["meta"],$array["deadline"]);
             $pj = new ProjetoDAO();
             $proj = $pj->insert($projeto);
-            echo json_encode(array("nome"=>$proj->getNome(), "propositor"=>$proj->getPropositor(), "objetivo"=>$proj->getObjetivo(), "cidade"=>$proj->getCidade(), "estado"=>$proj->getEstado(), "meta"=>$proj->getvlMeta(), "data final"=>$proj->getDeadline()));
+            echo json_encode(array("nome"=>$proj->getNome(), "propositor"=>$proj->getPropositor(), "objetivo"=>$proj->getObjetivo(), "cidade"=>$proj->getCidade(), "estado"=>$proj->getEstado(), "meta"=>$proj->getvlMeta(), "dealine"=>$proj->getDeadline()));
             http_response_code(200);
         }else{
             echo json_encode(array("response"=>"Dados inválidos"));

@@ -19,7 +19,7 @@ class ProjetoDAO{
         $stmt = $mysqli->prepare("SELECT * FROM tabela_vaquinha WHERE nome=?");
         $stmt->bind_param("s",$nome);
         $stmt->execute();
-        $stmt->bind_result($nome, $propositor, $objetivo, $cidade, $estado, $vlMeta, $deadline);
+        $stmt->bind_result($id,$nome, $propositor, $objetivo, $cidade, $estado, $vlMeta, $deadline);
         $stmt->fetch();
         $proj = new Projeto($id,$nome, $propositor, $objetivo, $cidade, $estado, $vlMeta, $deadline);
         return $proj;
