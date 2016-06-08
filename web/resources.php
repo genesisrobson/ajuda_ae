@@ -15,12 +15,12 @@ class GeneralResourceGET extends GeneralResource{
     }
     
     
-    public function project(){
+    public function projectGet(){
         $arg1 = $_GET["arg1"];
         header('content-type: application/json');
         if($arg1 != null){
-            require_once "model/projeto.php";
-            require_once "model/projetoDAO.php";
+            require_once "../model/projeto.php";
+            require_once "../model/projetoDAO.php";
             $pj = new ProjetoDAO();
             $proj = $pj->getProjeto($arg1);
             if($proj->getNome() != null && $proj->getPropositor() && $proj->getObjetivo() && $proj->getCidade() && $proj->getEstado() && $proj->getvlMeta() && $proj->getDeadline()){
@@ -38,13 +38,13 @@ class GeneralResourceGET extends GeneralResource{
     
 }class GeneralResourcePOST extends GeneralResource{
     
-    public function project(){
+    public function projectPOST(){
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
             $json = file_get_contents('php://input');
             $array = json_decode($json,true);
             //CUIDADO
-            require_once "model/projeto.php";
-            require_once "model/projetoDAO.php";
+            require_once "../model/projeto.php";
+            require_once "../model/projetoDAO.php";
             $project = new Projeto(0,$array["nome"],$array["propositor"],$array["objetivo"],$array["cidade"],$array["estado"],$array["meta"],$array["deadline"]);
             $pj = new ProjetoDAO();
             $proj = $pj->insert($projeto);
