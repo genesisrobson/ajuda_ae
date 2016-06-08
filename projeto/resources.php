@@ -7,7 +7,6 @@ abstract class GeneralResource{
         echo json_encode(array("response"=>"Recurso inexistente $m"));
         http_response_code(404);   
     }
-    
 }
 
 class GeneralResourceGET extends GeneralResource{
@@ -39,7 +38,7 @@ class GeneralResourceGET extends GeneralResource{
     
 }class GeneralResourcePOST extends GeneralResource{
     
-    public function project(){
+    public function project1(){
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
             $json = file_get_contents('php://input');
             $array = json_decode($json,true);
@@ -58,7 +57,7 @@ class GeneralResourceGET extends GeneralResource{
     }
 
 }
-
+/*
 class GeneralResourceDELETE extends GeneralResource{
     
     public function deletarProduto(){
@@ -97,5 +96,5 @@ class GeneralResourcePUT extends GeneralResource{
             http_response_code(500);   
         }
     }
-}
+}*/
 ?>
