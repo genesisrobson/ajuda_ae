@@ -44,13 +44,12 @@ class GeneralResourcePOST extends GeneralResource{
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
             $json = file_get_contents('php://input');
             $array = json_decode($json,true);
-            //CUIDADO
             require_once "../model/projeto.php";
             require_once "../model/projetoDAO.php";
             $projeto = new Projeto(0,$array["nome"],$array["propositor"],$array["objetivo"],$array["cidade"],$array["estado"],$array["meta"],$array["deadline"]);
             $pj = new ProjetoDAO();
-            $proj = $pj->insert($projeto);
-            echo json_encode(array("nome"=>$proj->getNome(), "propositor"=>$proj->getPropositor(), "objetivo"=>$proj->getObjetivo(), "cidade"=>$proj->getCidade(), "estado"=>$proj->getEstado(), "meta"=>$proj->getvlMeta(), "deadline"=>$proj->getDeadline()));
+            $pj->insert($projeto);
+            echo json_encode(array("response"=>"Cadastrado"));
             http_response_code(200);
         }else{
             echo json_encode(array("response"=>"Dados invalidos"));
@@ -66,8 +65,8 @@ class GeneralResourceDELETE extends GeneralResource{
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
             $json = file_get_contents('php://input');
             $array = json_decode($json,true);
-            require_once "../model/produtoDAO.php";
-            require_once "../model/produtoDAO.php";
+            require_once "../model/projeto.php";
+            require_once "../model/projetoDAO.php";
             $pj = new ProjetoDAO();
             $proj = $pj->deletar($_GET['arg1']);
             echo json_encode(array("response"=>"Deletado"));
