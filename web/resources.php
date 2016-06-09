@@ -15,7 +15,7 @@ class GeneralResourceGET extends GeneralResource{
     }
     
     
-    public function projectGet(){
+    public function projetoGET(){
         $arg1 = $_GET["arg1"];
         header('content-type: application/json');
         if($arg1 != null){
@@ -31,52 +31,57 @@ class GeneralResourceGET extends GeneralResource{
                 http_response_code(404);
             }
         }else{
-            echo json_encode(array("response"=>"Dados inválidos"));
+            echo json_encode(array("response"=>"Dados invalidos"));
             http_response_code(500); 
         }
     }
     
-}class GeneralResourcePOST extends GeneralResource{
+}
+
+class GeneralResourcePOST extends GeneralResource{
     
-    public function projectPOST(){
+    public function projetoPOST(){
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
             $json = file_get_contents('php://input');
             $array = json_decode($json,true);
             //CUIDADO
             require_once "../model/projeto.php";
             require_once "../model/projetoDAO.php";
-            $project = new Projeto(0,$array["nome"],$array["propositor"],$array["objetivo"],$array["cidade"],$array["estado"],$array["meta"],$array["deadline"]);
+            $projeto = new Projeto(0,$array["nome"],$array["propositor"],$array["objetivo"],$array["cidade"],$array["estado"],$array["meta"],$array["deadline"]);
             $pj = new ProjetoDAO();
             $proj = $pj->insert($projeto);
-            echo json_encode(array("nome"=>$proj->getNome(), "propositor"=>$proj->getPropositor(), "objetivo"=>$proj->getObjetivo(), "cidade"=>$proj->getCidade(), "estado"=>$proj->getEstado(), "meta"=>$proj->getvlMeta(), "dealine"=>$proj->getDeadline()));
+            echo json_encode(array("nome"=>$proj->getNome(), "propositor"=>$proj->getPropositor(), "objetivo"=>$proj->getObjetivo(), "cidade"=>$proj->getCidade(), "estado"=>$proj->getEstado(), "meta"=>$proj->getvlMeta(), "deadline"=>$proj->getDeadline()));
             http_response_code(200);
         }else{
-            echo json_encode(array("response"=>"Dados inválidos"));
+            echo json_encode(array("response"=>"Dados invalidos"));
             http_response_code(500);   
         }
     }
 
 }
-/*
+
 class GeneralResourceDELETE extends GeneralResource{
     
-    public function deletarProduto(){
+    public function deletarProjeto(){
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
-            //$json = file_get_contents('php://input');
-            //$array = json_decode($json,true);
-            //CUIDADO
-            require_once "model/produtoDAO.php";
-            $pd = new ProdutoDAO();
-            $prod = $pd->deletar($_GET['arg1']);
+            $json = file_get_contents('php://input');
+            $array = json_decode($json,true);
+            require_once "../model/produtoDAO.php";
+            require_once "../model/produtoDAO.php";
+            $pj = new ProjetoDAO();
+            $proj = $pj->deletar($_GET['arg1']);
+            echo json_encode(array("response"=>"Deletado"));
             http_response_code(200);
+            
         }else{
-            echo json_encode(array("response"=>"Dados inválidos"));
+            echo json_encode(array("response"=>"Dados invalidos"));
             http_response_code(500);   
         }
     }
-
 }
 
+
+/*
 class GeneralResourcePUT extends GeneralResource{
     
     public function alterarProduto(){
