@@ -38,6 +38,18 @@ class ProjetoDAO{
         $stmt->close();
     }
     
+    public function deletar($id){
+        $mysqli = new mysqli("127.0.0.1", "genesis_robson19", "", "ajuda_ae");
+        if ($mysqli->connect_errno) {
+            echo "Falha no MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        }
+        $stmt = $mysqli->prepare("UPDATE FROM tabela_vaquinha WHERE id=?");
+        $stmt->bind_param("i",$id);
+        if (!$stmt->execute()) {
+            echo "Erro: (" . $stmt->errno . ") " . $stmt->error . "<br>";
+        }
+        $stmt->close();
+    }
 
     //$stmt->bind_result($col1, $col2);
 }
