@@ -79,26 +79,23 @@ class GeneralResourceDELETE extends GeneralResource{
     }
 }
 
-
-/*
 class GeneralResourcePUT extends GeneralResource{
     
-    public function alterarProduto(){
+    public function alterarProjeto(){
         if($_SERVER["CONTENT_TYPE"] === "application/json"){
             $json = file_get_contents('php://input');
             $array = json_decode($json,true);
-            //CUIDADO
-            require_once "model/produto.php";
-            require_once "model/produtoDAO.php";
-            $produto = new Produto($_GET['arg1'],$array["nome"],$array["valor"]);
-            $pd = new ProdutoDAO();
-            $prod = $pd->alter($produto);
-            echo json_encode(array("id"=>$prod->getId(), "nome"=>$prod->getNome(), "valor"=>$prod->getValor()));
+            require_once "../model/projeto.php";
+            require_once "../model/projetoDAO.php";
+            $projeto = new Projeto($_GET['arg1'],$array["nome"],$array["propositor"],$array["objetivo"],$array["cidade"],$array["estado"],$array["meta"],$array["deadline"]);
+            $pj = new ProjetoDAO();
+            $proj = $pj->alter($projeto);
+            echo json_encode(array("response"=>"Alterado"));
             http_response_code(200);
         }else{
             echo json_encode(array("response"=>"Dados inválidos"));
             http_response_code(500);   
         }
     }
-}*/
+}
 ?>
