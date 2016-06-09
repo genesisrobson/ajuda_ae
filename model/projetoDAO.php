@@ -43,9 +43,8 @@ class ProjetoDAO{
         if ($mysqli->connect_errno) {
             echo "Falha no MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
         }
-        $stmt = $mysqli->prepare("UPDATE tabela_vaquinha SET nome=(?),propositor=(?),objetivo=(?),cidade=(?),estado=(?),vlMeta=(?),deadline=(?), WHERE id=?");
-        //$stmt->bind_param("i",$id);
-        $stmt->bind_param("isssssds",$p->getId(),$p->getNome(),$p->getPropositor(),$p->getObjetivo(),$p->getCidade(), $p->getEstado(),$p->getvlMeta(),$p->getDeadline() ); 
+        $stmt = $mysqli->prepare("UPDATE tabela_vaquinha SET nome=(?),propositor=(?),objetivo=(?),cidade=(?),estado=(?),vlMeta=(?),deadline=(?) WHERE id=(?)");
+        $stmt->bind_param("sssssdsi",$p->getNome(),$p->getPropositor(),$p->getObjetivo(),$p->getCidade(), $p->getEstado(),$p->getvlMeta(),$p->getDeadline(),$p->getId()); 
         if (!$stmt->execute()) {
             echo "Erro: (" . $stmt->errno . ") " . $stmt->error . "<br>";
         }
